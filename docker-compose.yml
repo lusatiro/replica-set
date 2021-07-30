@@ -1,6 +1,16 @@
 # https://docs.mongodb.com/manual/tutorial/deploy-replica-set-for-testing/
 version: "3.0"
 services:
+  app:
+    container_name: app
+    image: node
+    command: node ./scripts/index.js
+    volumes: 
+      - ./:/scripts
+    depends_on: 
+      - mongo0
+    networks: 
+      - mongo-net
   mongo0:
     container_name: mongo0
     image: mongo:4
